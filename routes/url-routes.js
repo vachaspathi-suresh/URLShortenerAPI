@@ -1,4 +1,3 @@
-// import { nanoid } from "nanoid";
 const { nanoid } = require("nanoid");
 const Url = require("../models/URLModel");
 const urlValidate = require("../utils/urlValidate");
@@ -6,6 +5,18 @@ const urlValidate = require("../utils/urlValidate");
 const router = require("express").Router();
 
 router.post("/short", async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    if (!token) {
+      return res.status(403).json("Authentication failed!");
+    }
+    if (token !== process.env.API_SECRET_KEY) {
+      return res.status(404).json("UnAuthorized Request!");
+    }
+  } catch (e) {
+    console.log(e);
+    return res.status(403).json("Authentication failed!");
+  }
   const { origUrl } = req.body;
   const base = process.env.BASE;
 

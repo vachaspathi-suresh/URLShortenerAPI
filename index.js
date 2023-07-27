@@ -4,7 +4,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const urlValidate = require("./utils/urlValidate");
 const urlRoutes = require("./routes/url-routes");
 const redirectRoutes = require("./routes/redirect-routes");
 
