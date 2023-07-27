@@ -19,7 +19,7 @@ router.post("/short", async (req, res) => {
   }
   const { origUrl } = req.body;
   const base = process.env.BASE;
-
+  console.log(origUrl);
   const urlId = nanoid();
   if (urlValidate(origUrl)) {
     try {
